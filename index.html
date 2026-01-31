@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Dashboard - Products</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Products Dashboard</h1>
+      <div style="display:flex;gap:12px;align-items:center;margin:10px 0 14px 0;flex-wrap:wrap;">
+        <input id="search-input" class="search-input" type="search" placeholder="Tìm theo tiêu đề..." aria-label="Tìm theo tiêu đề" />
+        
+        <div class="sort-controls">
+          <label style="color:var(--muted);font-size:13px;font-weight:500;">Sắp xếp:</label>
+          <button id="sort-title-btn" class="sort-btn" data-field="title" title="Click để sắp xếp theo tên A-Z, click lại để sắp xếp Z-A">
+            Tên <span class="sort-icon"></span>
+          </button>
+          <button id="sort-price-btn" class="sort-btn" data-field="price" title="Click để sắp xếp theo giá thấp-cao, click lại để sắp xếp cao-thấp">
+            Giá <span class="sort-icon"></span>
+          </button>
+          <button id="clear-sort-btn" class="sort-btn sort-clear" title="Xóa sắp xếp">Xóa</button>
+        </div>
+      </div>
+
+      <div class="table-card">
+        <table id="products-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Image</th>
+              <th>Title</th>
+              <th>Price</th>
+              <th>Category</th>
+              <th>Description</th>
+              <th>Created At</th>
+              <th>Updated At</th>
+            </tr>
+          </thead>
+          <tbody id="products-tbody">
+            <!-- rows injected by dashboard.js -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination-container">
+        <button id="prev-btn" class="pagination-btn">← Trước</button>
+        <span id="pagination-info" class="pagination-info">1</span>
+        <button id="next-btn" class="pagination-btn">Tiếp →</button>
+      </div>
+    </div>
+
+    <script type="module">
+      import { getAll } from './dashboard.js';
+      getAll();
+    </script>
+  </body>
+</html>

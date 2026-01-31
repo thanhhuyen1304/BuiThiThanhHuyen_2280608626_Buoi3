@@ -1,0 +1,315 @@
+/* styles.css - table styles with alternating black/white rows and full images */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+:root{
+  --accent: #0b5fff;
+  --muted: #6b7280;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  margin: 24px;
+  background: #fafafa;
+  color: #111827;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 18px;
+}
+
+h1 {
+  margin: 0 0 10px 0;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+.table-card{
+  background: #fff;
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 6px 18px rgba(15,23,42,0.06);
+  border: 1px solid rgba(15,23,42,0.04);
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1000px; /* allow table to expand on wide screens */
+}
+
+th, td {
+  padding: 16px 14px;
+  border-bottom: 1px solid rgba(15,23,42,0.06);
+  vertical-align: middle;
+  text-align: left;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  background: linear-gradient(180deg,#ffffff,#fbfdff);
+  color: #0f172a;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Keep the user's requirement: alternate black/white rows */
+tbody tr:nth-child(odd) {
+  background: #ffffff;
+  color: #000000;
+}
+
+tbody tr:nth-child(even) {
+  background: #000000;
+  color: #ffffff;
+}
+
+tbody tr:hover {
+  outline: 3px solid rgba(11,95,255,0.06);
+  transform: translateZ(0);
+}
+
+/* Make images visible on both black and white rows */
+tbody td img {
+  display: block;
+  max-width: 280px;
+  max-height: 200px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  background: #ffffff;
+  padding: 8px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(2,6,23,0.08);
+  margin: 0 auto;
+}
+
+.image-cell {
+  position: relative;
+}
+
+.image-gallery {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.gallery-img {
+  display: none;
+  max-width: 280px;
+  max-height: 200px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  background: #ffffff;
+  padding: 8px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(2,6,23,0.08);
+  margin: 0 auto;
+}
+
+.gallery-img:first-of-type {
+  display: block;
+}
+
+.gallery-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  font-size: 12px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.gallery-btn {
+  background: linear-gradient(135deg, rgba(11,95,255,0.15), rgba(11,95,255,0.08));
+  border: 1px solid rgba(11,95,255,0.4);
+  color: var(--accent);
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 16px;
+  line-height: 1;
+  outline: none;
+  box-shadow: 0 2px 4px rgba(11,95,255,0.1);
+}
+.gallery-btn:hover {
+  background: var(--accent);
+  color: #fff;
+  transform: scale(1.08) translateY(-1px);
+  box-shadow: 0 4px 12px rgba(11,95,255,0.3);
+  border-color: var(--accent);
+}
+.gallery-btn:active {
+  transform: scale(0.96);
+}
+.gallery-btn:focus {
+  outline: none;
+}
+
+.gallery-info {
+  color: var(--muted);
+  font-size: 12px;
+  min-width: 30px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.price {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.desc{
+  max-width: 360px;
+  white-space: normal;
+  overflow-wrap: break-word;
+  font-size: 13px;
+  line-height: 1.5;
+  padding-top: 4px;
+  color: inherit;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+  padding: 0 14px;
+}
+
+tbody tr:hover .desc{
+  max-height: 200px;
+  opacity: 1;
+  padding-top: 4px;
+}
+
+tbody tr:nth-child(odd) .desc {
+  background: #ffffff;
+}
+
+tbody tr:nth-child(even) .desc {
+  background: #000000;
+}
+
+.table-card table td:nth-child(6){
+  /* ensure description column can expand reasonably */
+  width: 36%;
+}
+
+@media (max-width: 760px){
+  table{ min-width: 520px; }
+  th, td { padding: 10px; }
+}
+
+.search-input{
+  border: 1px solid rgba(15,23,42,0.08);
+  padding: 8px 12px;
+  border-radius: 8px;
+  min-width: 260px;
+  outline: none;
+  transition: box-shadow .12s, border-color .12s;
+}
+.search-input:focus{
+  box-shadow: 0 6px 18px rgba(11,95,255,0.08);
+  border-color: var(--accent);
+}
+
+.sort-controls{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sort-btn{
+  padding: 8px 12px;
+  border: 1px solid rgba(11,95,255,0.3);
+  background: #fff;
+  color: var(--accent);
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.12s;
+  min-width: 70px;
+}
+.sort-btn:hover{
+  background: rgba(11,95,255,0.08);
+  box-shadow: 0 2px 8px rgba(11,95,255,0.1);
+  transform: translateY(-1px);
+}
+.sort-btn.active{
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(11,95,255,0.25);
+}
+
+.sort-icon{
+  font-weight: 700;
+  margin-left: 2px;
+}
+
+.sort-clear{
+  min-width: auto;
+  padding: 8px 10px;
+  font-size: 12px;
+  opacity: 0.5;
+  transition: opacity 0.12s;
+}
+.sort-clear:hover{
+  opacity: 1;
+}
+
+.pagination-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+  padding: 12px;
+}
+
+.pagination-btn{
+  padding: 8px 14px;
+  border: 1px solid rgba(11,95,255,0.3);
+  background: #fff;
+  color: var(--accent);
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.12s;
+}
+.pagination-btn:hover:not(:disabled){
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(11,95,255,0.2);
+}
+.pagination-btn:disabled{
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination-info{
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+  min-width: 200px;
+  text-align: center;
+}
+
